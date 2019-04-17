@@ -1,0 +1,50 @@
+.Data {
+  text-align: center;
+}
+
+.Data-logo {
+  animation: Data-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.Data-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Data-link {
+  color: #61dafb;
+}
+
+demo {
+  text-align: left;
+}
+
+h3 {
+  /* color: #61dafb; */
+  text-align: left;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.demo {
+  color: #61dafb;
+}
+
+@keyframes Data-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
