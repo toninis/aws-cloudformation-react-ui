@@ -4,18 +4,13 @@ import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+// import ExpansionPanelActions from "@material-ui/core/ExpansionPanelActions";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
+import Chip from "@material-ui/core/Chip";
+// import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
 
 import "./Data.css";
 
@@ -68,86 +63,123 @@ class Data extends Component {
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h3>Deleted Demos</h3>
           </ExpansionPanelSummary>
-          <List component="nav" className="Data">
-            {summaries
-              .filter(s => s.StackStatus === "DELETE_COMPLETE")
-              .map((s, i) => {
-                // return <div className="demo"> {s.StackName} </div>;
-                return (
-                  <React.Fragment>
-                    <ListItem button onClick={this.handleClick}>
-                      <ListItemIcon>
-                        <InboxIcon />
-                      </ListItemIcon>
-                      <ListItemText inset primary={s.StackName} />
-                      {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
-                        <ListItem button className="Data">
-                          <ListItemIcon>
-                            <StarBorder />
-                          </ListItemIcon>
-                          <ListItemText inset primary="Starred" />
-                        </ListItem>
-                      </List>
-                    </Collapse>
-                  </React.Fragment>
-                );
-              })}
-          </List>
+          {summaries
+            .filter(s => s.StackStatus === "DELETE_COMPLETE")
+            .map((s, i) => {
+              // return <div className="demo"> {s.StackName} </div>;
+              return (
+                <ExpansionPanel>
+                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <div className="demo">
+                      <Typography className="Data">{s.StackName}</Typography>
+                    </div>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails className="Data">
+                    <div className="Data" />
+                    <div className="Data">
+                      <Chip
+                        label="Barbados"
+                        className="Data"
+                        onDelete={() => {}}
+                      />
+                    </div>
+                    <div className="Data">
+                      <Typography variant="caption">
+                        Select your destination of choice
+                        <br />
+                        <a href="#sub-labels-and-columns" className="Data">
+                          Learn more
+                        </a>
+                      </Typography>
+                    </div>
+                  </ExpansionPanelDetails>
+                  <Divider />
+                </ExpansionPanel>
+              );
+            })}
         </ExpansionPanel>
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h3>Running Demos</h3>
           </ExpansionPanelSummary>
         </ExpansionPanel>
-        <List component="nav" className="Data">
-          {summaries
-            .filter(s => s.StackStatus === "CREATE_COMPLETE")
-            .map((s, i) => {
-              // return <div className="demo"> {s.StackName} </div>;
-              return (
-                <React.Fragment>
-                  <ListItem button onClick={this.handleClick}>
-                    <ListItemIcon>
-                      <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText inset primary={s.StackName} />
-                    {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                  </ListItem>
-                  <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      <ListItem button className="Data">
-                        <ListItemIcon>
-                          <StarBorder />
-                        </ListItemIcon>
-                        <ListItemText inset primary="Starred" />
-                      </ListItem>
-                    </List>
-                  </Collapse>
-                </React.Fragment>
-              );
-            })}
-        </List>
+        {summaries
+          .filter(s => s.StackStatus === "CREATE_COMPLETE")
+          .map((s, i) => {
+            // return <div className="demo"> {s.StackName} </div>;
+            return (
+              <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                  <div className="demo">
+                    <Typography className="Data">{s.StackName}</Typography>
+                  </div>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails className="Data">
+                  <div className="Data" />
+                  <div className="Data">
+                    <Chip
+                      label="Barbados"
+                      className="Data"
+                      onDelete={() => {}}
+                    />
+                  </div>
+                  <div className="Data">
+                    <Typography variant="caption">
+                      Select your destination of choice
+                      <br />
+                      <a href="#sub-labels-and-columns" className="Data">
+                        Learn more
+                      </a>
+                    </Typography>
+                  </div>
+                </ExpansionPanelDetails>
+                <Divider />
+              </ExpansionPanel>
+            );
+          })}
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <h3>Failed Demos</h3>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              {summaries
-                .filter(
-                  s =>
-                    s.StackStatus === "CREATE_FAILED" ||
-                    s.StackStatus === "DELETE_FAILED"
-                )
-                .map((s, i) => {
-                  return <div className="demo"> {s.StackName} </div>;
-                })}
-            </Typography>
-          </ExpansionPanelDetails>
         </ExpansionPanel>
+        {summaries
+          .filter(
+            s =>
+              s.StackStatus === "CREATE_FAILED" ||
+              s.StackStatus === "DELETE_FAILED"
+          )
+          .map((s, i) => {
+            // return <div className="demo"> {s.StackName} </div>;
+            return (
+              <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                  <div className="demo">
+                    <Typography className="Data">{s.StackName}</Typography>
+                  </div>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails className="Data">
+                  <div className="Data" />
+                  <div className="Data">
+                    <Chip
+                      label="Barbados"
+                      className="Data"
+                      onDelete={() => {}}
+                    />
+                  </div>
+                  <div className="Data">
+                    <Typography variant="caption">
+                      Select your destination of choice
+                      <br />
+                      <a href="#sub-labels-and-columns" className="Data">
+                        Learn more
+                      </a>
+                    </Typography>
+                  </div>
+                </ExpansionPanelDetails>
+                <Divider />
+              </ExpansionPanel>
+            );
+          })}
       </div>
     );
   }
