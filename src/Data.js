@@ -28,7 +28,8 @@ function generateAWSurl(stackID) {
 const styles = theme => ({
   root: {
     width: "95%",
-    "align-items": "center"
+    "align-items": "center",
+    margin: "auto"
   },
   br: {
     "line-height": "1px"
@@ -40,7 +41,7 @@ const styles = theme => ({
   },
   demo: {
     width: "90%",
-    "align-items": "center",
+    margin: "auto",
     "background-color": "#f1f1f1",
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular
@@ -145,6 +146,7 @@ class Data extends Component {
               );
             })}
         </ExpansionPanel>
+        <br />
         <ExpansionPanel className={classes.root}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Deleted Demos</Typography>
