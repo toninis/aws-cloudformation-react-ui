@@ -31,24 +31,29 @@ const styles = theme => ({
     "align-items": "center",
     margin: "auto"
   },
-  br: {
-    "line-height": "1px"
+  btext: {
+    fontSize: theme.typography.pxToRem(10)
   },
   button: {
+    width: "20%",
     margin: theme.spacing.unit,
+    "background-color": "#F8F8FF",
     display: "flex",
-    fontSize: theme.typography.pxToRem(10)
+    fontSize: theme.typography.pxToRem(10),
+    fontWeight: theme.typography.fontWeightRegular
   },
   demo: {
     width: "90%",
     margin: "auto",
-    "background-color": "#f1f1f1",
-    fontSize: theme.typography.pxToRem(15),
+    "background-color": "#DCDCDC",
+    fontSize: theme.typography.pxToRem(13),
     fontWeight: theme.typography.fontWeightRegular
   },
   expandedDemo: {
-    width: "80%",
-    "align-items": "center",
+    width: "100%",
+    margin: "auto",
+    display: "flex",
+    "background-color": "#F5F5F5",
     fontSize: theme.typography.pxToRem(13),
     fontWeight: theme.typography.fontWeightRegular
   },
@@ -59,9 +64,6 @@ const styles = theme => ({
   leftIcon: {
     marginRight: theme.spacing.unit,
     "align-items": "center"
-  },
-  rightIcon: {
-    marginLeft: theme.spacing.unit
   },
   iconSmall: {
     fontSize: 20
@@ -103,7 +105,7 @@ class Data extends Component {
     const classes = this.props.classes;
 
     return (
-      <div class="Data">
+      <div className="Data">
         <ExpansionPanel defaultExpanded className={classes.root}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Running Demos</Typography>
@@ -112,34 +114,29 @@ class Data extends Component {
             .filter(s => s.StackStatus === "CREATE_COMPLETE")
             .map(s => {
               return (
-                <ExpansionPanel className={classes.demo}>
-                  <Divider />
+                <ExpansionPanel className={classes.demo} key={s.StackId}>
                   <ExpansionPanelSummary
                     className={classes.heading}
                     expandIcon={<ExpandMoreIcon />}
                   >
                     <CloudFormation className={classes.leftIcon} />
-                    <Typography className={classes.demo} key={s.StackId}>
-                      {s.StackName}
-                    </Typography>
+                    <Typography>{s.StackName}</Typography>
                   </ExpansionPanelSummary>
                   <Divider />
                   <ExpansionPanelDetails className={classes.expandedDemo}>
                     <Button
+                      size="small"
                       variant="contained"
                       href={generateAWSurl(s.StackId)}
                       className={classes.button}
                     >
-                      <CloudFormation className={classes.leftIcon} size={48} />
-                      Go to AWS
+                      <CloudFormation className={classes.leftIcon} size={20} />
+                      <Typography align="inherit" className={classes.btext}>
+                        Check @ AWS
+                      </Typography>
                     </Button>
                     <Divider variant="inset" />
-                    <Typography
-                      className={classes.expandedDemo}
-                      key={s.StackId}
-                    >
-                      {s.CreationTime}
-                    </Typography>
+                    <Typography>{s.CreationTime}</Typography>
                   </ExpansionPanelDetails>
                   <Divider />
                 </ExpansionPanel>
@@ -155,34 +152,30 @@ class Data extends Component {
             .filter(s => s.StackStatus === "DELETE_COMPLETE")
             .map(s => {
               return (
-                <ExpansionPanel className={classes.demo}>
+                <ExpansionPanel className={classes.demo} key={s.StackId}>
                   <Divider />
                   <ExpansionPanelSummary
                     className={classes.heading}
                     expandIcon={<ExpandMoreIcon />}
                   >
                     <CloudFormation className={classes.leftIcon} />
-                    <Typography className={classes.demo} key={s.StackId}>
-                      {s.StackName}
-                    </Typography>
+                    <Typography>{s.StackName}</Typography>
                   </ExpansionPanelSummary>
                   <Divider />
                   <ExpansionPanelDetails className={classes.expandedDemo}>
                     <Button
+                      size="small"
                       variant="contained"
                       href={generateAWSurl(s.StackId)}
                       className={classes.button}
                     >
-                      <CloudFormation className={classes.leftIcon} size={48} />
-                      Go to AWS
+                      <CloudFormation className={classes.leftIcon} size={20} />
+                      <Typography className={classes.btext}>
+                        Check in AWS
+                      </Typography>
                     </Button>
                     <Divider variant="inset" />
-                    <Typography
-                      className={classes.expandedDemo}
-                      key={s.StackId}
-                    >
-                      {s.CreationTime}
-                    </Typography>
+                    <Typography>{s.CreationTime}</Typography>
                   </ExpansionPanelDetails>
                   <Divider />
                 </ExpansionPanel>
