@@ -10,6 +10,7 @@
     "babel": "^6.23.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-aws-icons": "^1.2.1",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8"
   },
