@@ -71,14 +71,6 @@ class Created extends Component {
     };
   }
 
-  state = {
-    open: true
-  };
-
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
-  };
-
   componentDidMount() {
     fetch("/demos")
       .then(response => response.json())
