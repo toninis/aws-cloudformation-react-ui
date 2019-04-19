@@ -76,7 +76,7 @@ class Created extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:4000")
+    fetch("/demos")
       .then(response => response.json())
       .then(data => {
         this.setState({
