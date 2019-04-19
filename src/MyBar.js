@@ -7,6 +7,14 @@ import Typography from "@material-ui/core/Typography";
 import AWSCloud from "react-aws-icons/dist/aws/compute/AWSCloud";
 
 const styles = theme => ({
+  "@keyframes menuButton-spin": {
+    from: {
+      transform: "rotate(0deg)"
+    },
+    to: {
+      transform: "rotate(360deg)"
+    }
+  },
   root: {
     width: "100%",
     flexGrow: 1
@@ -16,7 +24,9 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20
+    marginRight: 20,
+    animation: "menuButton-spin infinite 2s linear",
+    "pointer-events": "none"
   }
 });
 
