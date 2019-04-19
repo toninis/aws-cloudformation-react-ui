@@ -8,6 +8,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import CloudFormation from "react-aws-icons/dist/aws/logo/CloudFormation";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
 
 import "./Deleted.css";
 
@@ -18,6 +20,10 @@ const styles = theme => ({
     width: "95%",
     "align-items": "center",
     margin: "auto"
+  },
+  loadmore: {
+    margin: theme.spacing.unit,
+    float: "right"
   },
   btext: {
     fontSize: theme.typography.pxToRem(10)
@@ -63,17 +69,18 @@ class Data extends Component {
     this.state = {
       isLoading: true,
       error: null,
-      summaries: []
+      summaries: [],
+      visible: 5
     };
+
+    this.loadMore = this.loadMore.bind(this);
   }
 
-  state = {
-    open: true
-  };
-
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
-  };
+  loadMore() {
+    this.setState(prev => {
+      return { visible: prev.visible + 5 };
+    });
+  }
 
   componentDidMount() {
     fetch("http://localhost:4000")
@@ -99,6 +106,7 @@ class Data extends Component {
           </ExpansionPanelSummary>
           {summaries
             .filter(s => s.StackStatus === "DELETE_COMPLETE")
+            .slice(0, this.state.visible)
             .map(s => {
               return (
                 <ExpansionPanel className={classes.demo} key={s.StackId}>
@@ -130,6 +138,17 @@ class Data extends Component {
                 </ExpansionPanel>
               );
             })}
+          {this.state.visible < this.state.summaries.length && (
+            <Fab
+              size="small"
+              variant="round"
+              onClick={this.loadMore}
+              className={classes.loadmore}
+              color="secondary"
+            >
+              <AddIcon className={classes.loadmore} />
+            </Fab>
+          )}
         </ExpansionPanel>
       </div>
     );
