@@ -7,8 +7,6 @@ import Divider from "@material-ui/core/Divider";
 
 import AWSCloud from "react-aws-icons/dist/aws/compute/AWSCloud";
 
-import "./MyBar.css";
-
 const styles = theme => ({
   root: {
     width: "100%",
@@ -36,7 +34,6 @@ class MyBar extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Divider />
         <br />
       </div>
     );

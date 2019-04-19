@@ -11,8 +11,6 @@ import Divider from "@material-ui/core/Divider";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 
-import "./Deleted.css";
-
 import * as helpers from "./functions";
 
 const styles = theme => ({

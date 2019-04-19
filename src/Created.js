@@ -9,8 +9,6 @@ import CloudFormation from "react-aws-icons/dist/aws/logo/CloudFormation";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 
-import "./Created.css";
-
 import * as helpers from "./functions";
 
 const styles = theme => ({

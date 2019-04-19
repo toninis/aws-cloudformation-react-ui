@@ -12,11 +12,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-footer {
-  width: 100%;
-  padding: 1rem;
-  margin: 0.5rem 1rem;
-  text-align: center;
-  transition: 200ms;
-}
