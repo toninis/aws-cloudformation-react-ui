@@ -1,29 +1,17 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-// import ExpansionPanelActions from "@material-ui/core/ExpansionPanelActions";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import AWSIcon from "react-aws-icons/dist/aws/logo/AWS";
 import CloudFormation from "react-aws-icons/dist/aws/logo/CloudFormation";
-
 import Button from "@material-ui/core/Button";
-
-// import Chip from "@material-ui/core/Chip";
-// import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 
-import "./Data.css";
+import "./Created.css";
 
-function generateAWSurl(stackID) {
-  const baseUrl =
-    "https://eu-west-2.console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/";
-  let newStackID = encodeURIComponent(stackID);
-  return baseUrl + newStackID + "/overview";
-}
+import * as helpers from "./functions";
 
 const styles = theme => ({
   root: {
@@ -37,7 +25,7 @@ const styles = theme => ({
   button: {
     width: "20%",
     margin: theme.spacing.unit,
-    "background-color": "#F8F8FF",
+    "background-color": "#FFFAFA",
     display: "flex",
     fontSize: theme.typography.pxToRem(10),
     fontWeight: theme.typography.fontWeightRegular
@@ -50,7 +38,6 @@ const styles = theme => ({
     fontWeight: theme.typography.fontWeightRegular
   },
   expandedDemo: {
-    width: "100%",
     margin: "auto",
     display: "flex",
     "background-color": "#F5F5F5",
@@ -70,7 +57,7 @@ const styles = theme => ({
   }
 });
 
-class Data extends Component {
+class Created extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -105,7 +92,7 @@ class Data extends Component {
     const classes = this.props.classes;
 
     return (
-      <div className="Data">
+      <div className="Created">
         <ExpansionPanel defaultExpanded className={classes.root}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Running Demos</Typography>
@@ -127,7 +114,7 @@ class Data extends Component {
                     <Button
                       size="small"
                       variant="contained"
-                      href={generateAWSurl(s.StackId)}
+                      href={helpers.generateAWSurl(s.StackId)}
                       className={classes.button}
                     >
                       <CloudFormation className={classes.leftIcon} size={20} />
@@ -143,48 +130,9 @@ class Data extends Component {
               );
             })}
         </ExpansionPanel>
-        <br />
-        <ExpansionPanel className={classes.root}>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Deleted Demos</Typography>
-          </ExpansionPanelSummary>
-          {summaries
-            .filter(s => s.StackStatus === "DELETE_COMPLETE")
-            .map(s => {
-              return (
-                <ExpansionPanel className={classes.demo} key={s.StackId}>
-                  <Divider />
-                  <ExpansionPanelSummary
-                    className={classes.heading}
-                    expandIcon={<ExpandMoreIcon />}
-                  >
-                    <CloudFormation className={classes.leftIcon} />
-                    <Typography>{s.StackName}</Typography>
-                  </ExpansionPanelSummary>
-                  <Divider />
-                  <ExpansionPanelDetails className={classes.expandedDemo}>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      href={generateAWSurl(s.StackId)}
-                      className={classes.button}
-                    >
-                      <CloudFormation className={classes.leftIcon} size={20} />
-                      <Typography className={classes.btext}>
-                        Check in AWS
-                      </Typography>
-                    </Button>
-                    <Divider variant="inset" />
-                    <Typography>{s.CreationTime}</Typography>
-                  </ExpansionPanelDetails>
-                  <Divider />
-                </ExpansionPanel>
-              );
-            })}
-        </ExpansionPanel>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(Data);
+export default withStyles(styles)(Created);
