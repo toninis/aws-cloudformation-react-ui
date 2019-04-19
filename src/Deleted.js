@@ -72,6 +72,7 @@ class Data extends Component {
     };
 
     this.loadMore = this.loadMore.bind(this);
+    this.fetchDeleted = this.fetchDeleted.bind(this);
   }
 
   loadMore() {
@@ -80,7 +81,7 @@ class Data extends Component {
     });
   }
 
-  componentDidMount() {
+  fetchDeleted() {
     fetch("/demos")
       .then(response => response.json())
       .then(data => {
@@ -92,13 +93,25 @@ class Data extends Component {
       });
   }
 
+  // componentDidMount() {
+  //   fetch("/demos")
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       this.setState({
+  //         ...this.state,
+  //         summaries: data.StackSummaries,
+  //         isLoading: false
+  //       });
+  //     });
+  // }
+
   render() {
     const summaries = this.state.summaries;
     const classes = this.props.classes;
 
     return (
       <div className="Data">
-        <ExpansionPanel className={classes.root}>
+        <ExpansionPanel className={classes.root} onChange={this.fetchDeleted}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Deleted Demos</Typography>
           </ExpansionPanelSummary>
