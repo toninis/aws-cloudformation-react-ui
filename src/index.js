@@ -2,14 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import MyBar from "./MyBar";
-import Created from "./Created";
-import Deleted from "./Deleted";
 import Footer from "./Footer";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(<MyBar />, document.getElementById("MyBar"));
-ReactDOM.render(<Created />, document.getElementById("Created"));
-ReactDOM.render(<Deleted />, document.getElementById("Deleted"));
 ReactDOM.render(<Footer />, document.getElementById("Footer"));
 
 // If you want your app to work offline and load faster, you can change

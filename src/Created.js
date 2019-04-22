@@ -23,7 +23,7 @@ class Created extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     fetch("/demos")
       .then(response => response.json())
       .then(data => {
