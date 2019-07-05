@@ -17,11 +17,11 @@ class Footer extends Component {
     const classes = this.props.classes;
     return (
       <div className={classes.footer}>
-        Created by Encode DevOps Team
+        Created by Antonis Stamatiou
         <br />
         Contact information :{" "}
-        <a href="mailto:Engineering-DevOps@encodegroup.com">
-          Engineering-DevOps@encodegroup.com
+        <a href="mailto:stamatiou.antonis@protonmail.com">
+          stamatiou.antonis@protonmail.com
         </a>
       </div>
     );

@@ -35,7 +35,7 @@ class MyBar extends Component {
           <Toolbar>
             <AWSCloud className={classes.menuButton} size={55} />
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              Encode SA Current Demo Live Status
+              Cloudformation Stacks Live Status
             </Typography>
             <Tabs value={value} onChange={this.handleChange}>
               <Tab label="Status" />

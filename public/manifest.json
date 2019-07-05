@@ -1,6 +1,6 @@
 {
-  "short_name": "Encode App",
-  "name": "Encode SA Current Demo Live Status App",
+  "short_name": "Cloudformation React App",
+  "name": "Cloudformation Live Status App",
   "icons": [
     {
       "src": "favicon.ico",
